@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as Auth0 from 'auth0-web';
+
 import { getCanvasPosition } from './utils/formulas';
 import Canvas from './components/Canvas';
+
+Auth0.configure({
+  domain: 'vigzmv.auth0.com',
+  clientID: 'Q32NKDCOQ9FZP-ACFkXZRj4TZL2W2F8E',
+  redirectUri: 'http://localhost:3000/',
+  responseType: 'token id_token',
+  scope: 'openid profile manage:points',
+});
 
 class App extends Component {
   componentDidMount() {
     const self = this;
+
+    Auth0.handleAuthCallback();
+    Auth0.subscribe(auth => {
+      console.log(auth);
+    });
+
     setInterval(() => {
       self.props.moveObjects(self.canvasMousePosition);
     }, 10);
