@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import App from '../App';
-import { leaderboardLoaded, loggedIn, moveObjects, startGame } from '../actions/index';
+import { leaderboardLoaded, loggedIn, moveObjects, startGame, shoot } from '../actions/index';
 
 const mapStateToProps = state => ({
   angle: state.angle,
@@ -19,11 +19,14 @@ const mapDispatchToProps = dispatch => ({
   moveObjects: mousePosition => {
     dispatch(moveObjects(mousePosition));
   },
+  startGame: () => {
+    dispatch(startGame());
+  },
 
   // Redux: 1 this function is passed to component as a Prop.
   // This is called by the component, then it calls the action.
-  startGame: () => {
-    dispatch(startGame());
+  shoot: mousePosition => {
+    dispatch(shoot(mousePosition));
   },
 });
 
