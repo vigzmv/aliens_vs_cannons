@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { skyAndGroundWidth } from '../utils/constants';
 
 const Sky = () => {

@@ -1,17 +1,18 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getCanvasPosition } from './utils/formulas';
-import Canvas from './components/Canvas';
 import * as Auth0 from 'auth0-web';
 import io from 'socket.io-client';
 
+import { getCanvasPosition } from './utils/formulas';
+import Canvas from './components/Canvas';
+
 Auth0.configure({
-  domain: 'digituz-corp.auth0.com',
-  clientID: 'D41G9fJIvLrUJivCJpAkxOA74fpxn2Rg',
+  domain: 'vigzmv.auth0.com',
+  clientID: 'Q32NKDCOQ9FZP-ACFkXZRj4TZL2W2F8E',
   redirectUri: 'http://localhost:3000/',
   responseType: 'token id_token',
   scope: 'openid profile manage:points',
-  audience: 'https://aliens-go-home.digituz.com.br',
+  audience: 'https://vigneshm.com/aliens_vs_cannons',
 });
 
 class App extends Component {
@@ -27,7 +28,7 @@ class App extends Component {
 
     Auth0.handleAuthCallback();
 
-    Auth0.subscribe((auth) => {
+    Auth0.subscribe(auth => {
       if (!auth) return;
 
       self.playerProfile = Auth0.getProfile();
@@ -44,9 +45,9 @@ class App extends Component {
         query: `token=${Auth0.getAccessToken()}`,
       });
 
-      self.socket.on('players', (players) => {
+      self.socket.on('players', players => {
         this.props.leaderboardLoaded(players);
-        players.forEach((player) => {
+        players.forEach(player => {
           if (player.id === self.currentPlayer.id) {
             self.currentPlayer.maxScore = player.maxScore;
           }
@@ -93,7 +94,7 @@ class App extends Component {
         gameState={this.props.gameState}
         players={this.props.players}
         startGame={this.props.startGame}
-        trackMouse={event => (this.trackMouse(event))}
+        trackMouse={event => this.trackMouse(event)}
         shoot={this.shoot}
       />
     );
@@ -107,13 +108,15 @@ App.propTypes = {
     kills: PropTypes.number.isRequired,
     lives: PropTypes.number.isRequired,
   }).isRequired,
-  flyingObjects: PropTypes.arrayOf(PropTypes.shape({
-    position: PropTypes.shape({
-      x: PropTypes.number.isRequired,
-      y: PropTypes.number.isRequired
-    }).isRequired,
-    id: PropTypes.number.isRequired,
-  })).isRequired,
+  flyingObjects: PropTypes.arrayOf(
+    PropTypes.shape({
+      position: PropTypes.shape({
+        x: PropTypes.number.isRequired,
+        y: PropTypes.number.isRequired,
+      }).isRequired,
+      id: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
   moveObjects: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
   currentPlayer: PropTypes.shape({
@@ -124,12 +127,14 @@ App.propTypes = {
   }),
   leaderboardLoaded: PropTypes.func.isRequired,
   loggedIn: PropTypes.func.isRequired,
-  players: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    maxScore: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-  })),
+  players: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      maxScore: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      picture: PropTypes.string.isRequired,
+    }),
+  ),
   shoot: PropTypes.func.isRequired,
 };
 
