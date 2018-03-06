@@ -2,8 +2,10 @@
   "name": "aliens_vs_cannons",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vigneshm.com/aliens_vs_cannons",
   "dependencies": {
     "auth0-web": "^1.7.0",
+    "gh-pages": "^1.1.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -16,6 +18,8 @@
   "scripts": {
     "start": "react-scripts start",
     "server": "node server",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
