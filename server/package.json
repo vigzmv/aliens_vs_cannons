@@ -13,6 +13,7 @@
     "express": "^4.16.2",
     "jsonwebtoken": "^8.1.1",
     "jwks-rsa": "^1.2.1",
+    "redis": "^2.8.0",
     "socket.io": "^2.0.4",
     "socketio-jwt": "^4.5.0"
   }

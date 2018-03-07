@@ -3,12 +3,30 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const jwt = require('jsonwebtoken');
 const jwksClient = require('jwks-rsa');
+const redis = require('redis');
+
+const redisClient = redis.createClient();
+let players = [];
+
+redisClient.on('connect', () => {
+  console.log('Redis connected');
+
+  redisClient.exists('players', (err, reply) => {
+    if (reply === 1) {
+      console.log('Players Found');
+
+      redisClient.lrange('players', 0, -1, (err, data) => {
+        players = data.map(player => JSON.parse(player));
+      });
+    } else {
+      console.log('No players found');
+    }
+  });
+});
 
 const client = jwksClient({
   jwksUri: 'https://vigzmv.auth0.com/.well-known/jwks.json',
 });
-
-const players = [];
 
 const verifyPlayer = (token, cb) => {
   const uncheckedToken = jwt.decode(token, { complete: true });
@@ -32,6 +50,10 @@ const newMaxScoreHandler = payload => {
 
   if (!foundPlayer) {
     players.push(payload);
+
+    redisClient.rpush(['players', ...players.map(player => JSON.stringify(player))], (err, reply) => {
+      console.log(reply);
+    });
   }
 
   io.emit('players', players);
