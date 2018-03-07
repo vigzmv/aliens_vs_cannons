@@ -31,21 +31,21 @@ const Leaderboard = props => {
       currentPlayer: member.id === props.currentPlayer.id,
     }))
     .filter((member, index) => {
-      if (index < 3 || member.id === props.currentPlayer.id) return member;
+      if (index < 6 || member.id === props.currentPlayer.id) return member;
       return null;
     });
 
   return (
     <g>
-      <text filter="url(#shadow)" style={leaderboardTitle} x="-150" y="-630">
+      <text filter="url(#shadow)" style={leaderboardTitle} x="-150" y="-730">
         Leaderboard
       </text>
-      <rect style={style} x="-350" y="-600" width="700" height="330" />
+      <rect style={style} x="-350" y="-700" width="700" height="460" />
       {props.currentPlayer &&
         leaderboard.map((player, idx) => {
           const position = {
             x: -100,
-            y: -530 + 70 * idx,
+            y: -635 + 70 * idx,
           };
           return <Rank key={player.id} player={player} position={position} />;
         })}
