@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { signIn } from 'auth0-web';
+
 import Sky from './Sky';
 import Ground from './Ground';
 import CannonBase from './CannonBase';
@@ -7,7 +9,6 @@ import CannonPipe from './CannonPipe';
 import CurrentScore from './CurrentScore';
 import FlyingObject from './FlyingObject';
 import StartGame from './StartGame';
-import { signIn } from 'auth0-web';
 
 import Title from './Title';
 import Leaderboard from './Leaderboard';
@@ -21,7 +22,7 @@ const Canvas = props => {
   const lives = [];
   for (let i = 0; i < props.gameState.lives; i++) {
     const heartPosition = {
-      x: -180 - i * 70,
+      x: -160 - i * 70,
       y: 35,
     };
     lives.push(<Heart key={i} position={heartPosition} />);
