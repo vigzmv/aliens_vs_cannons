@@ -31,7 +31,7 @@ const Leaderboard = props => {
       currentPlayer: member.id === props.currentPlayer.id,
     }))
     .filter((member, index) => {
-      if (index < 6 || member.id === props.currentPlayer.id) return member;
+      if (index < 5 || member.id === props.currentPlayer.id) return member;
       return null;
     });
 

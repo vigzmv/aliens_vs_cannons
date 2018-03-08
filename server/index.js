@@ -50,11 +50,13 @@ const newMaxScoreHandler = payload => {
 
   if (!foundPlayer) {
     players.push(payload);
+  }
 
-    redisClient.rpush(['players', ...players.map(player => JSON.stringify(player))], (err, reply) => {
+  redisClient.del('players', () => {
+    redisClient.lpush(['players', ...players.map(player => JSON.stringify(player))], (err, reply) => {
       console.log(reply);
     });
-  }
+  });
 
   io.emit('players', players);
 };
