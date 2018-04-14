@@ -8,7 +8,7 @@
 
 ## Shoot them All!!
 
-Thanks to [Brunos Krebs](https://twitter.com/brunoskrebs) for this amazing [guide](https://auth0.com/blog/developing-games-with-react-redux-and-svg-part-1/) for this project
+Thanks to [Brunos Krebs](https://twitter.com/brunoskrebs) for this amazing [guide](https://auth0.com/blog/developing-games-with-react-redux-and-svg-part-1/) for this project.
 
 Built Using:
 
@@ -18,12 +18,12 @@ Built Using:
 * SVG
 * Auth0
 * Node & Express
-* Web Socket
+* Web Sockets
 
 ## Live Demo
 
 Check out the live demo
-[Here: https://vigneshm.com/aliens_vs_cannons/](https://vigneshm.com/aliens_vs_cannons/)
+[Here: vigneshm.com/aliens_vs_cannons](https://vigneshm.com/aliens_vs_cannons/)
 
 <hr>
 
@@ -71,7 +71,7 @@ the console.
 
 #### Redis
 
-Install and start redis-server. Redis is used to cache leaderboard and player data
+Install and start redis-server. Redis is used to cache leaderboard and player data.
 
 
 ### Build the app for production:
