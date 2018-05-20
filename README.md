@@ -22,8 +22,7 @@ Built Using:
 
 ## Live Demo
 
-Check out the live demo
-[Here: vigneshm.com/aliens_vs_cannons](https://vigneshm.com/aliens_vs_cannons/)
+Check out the live demo here: [vigneshm.com/aliens_vs_cannons](https://vigneshm.com/aliens_vs_cannons/)
 
 <hr>
 
@@ -71,7 +70,7 @@ the console.
 
 #### Redis
 
-Install and start redis-server. Redis is used to cache leaderboard and player data.
+Install and start redis-server. Redis is used to cache the leaderboard and player data.
 
 
 ### Build the app for production:
